@@ -21,6 +21,19 @@ with open(budget_csv) as csvfile:
     # read header row first
     csv_header = next(csvreader) 
 
+    # extract first row info
+    first_row = next(csvreader)
+
+    # increament total months
+    total_months.append(first_row[0])
+
+    # calculate total profit/losses
+    total_pl = total_pl + int(first_row[1])
+
+    # initialize previous month
+    previous_pl = int(first_row[1])
+
+    ###################################
     # iterate through data
     for row in csvreader:
 
@@ -70,9 +83,9 @@ with open (results_file, "w") as file:
     file.write(analysis)
 
 
+print(sum(pl_change_list))
 
-
-
+print(len(pl_change_list))
 
 
 
